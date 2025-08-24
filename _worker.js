@@ -1,43 +1,54 @@
 export default {
   async fetch(request, env, ctx) {
+    const CANON = env.CANONICAL;
+    const TARGET = new URL(env.TARGET_URL);
     const url = new URL(request.url);
-    const TARGET = env.TARGET_URL;
-    const cache = caches.default;
 
-    // Always mirror root of TARGET (simple version)
-    const cacheKey = new Request(TARGET, { method: "GET" });
-
-    // Redirect everything to canonical
-    if (url.hostname !== env.CANONICAL) {
-      url.hostname = env.CANONICAL;
+    // 1) Force canonical host
+    if (url.hostname !== CANON) {
+      url.hostname = CANON;
       return Response.redirect(url.toString(), 301);
     }
 
-    // Try edge cache first
+    // 2) Only proxy GET/HEAD
+    if (!["GET", "HEAD"].includes(request.method))
+      return new Response("Method not allowed", { status: 405 });
+
+    // 3) Build target URL (preserve path + query)
+    const targetUrl = new URL(url.pathname + url.search, TARGET);
+
+    // 4) Edge cache
+    const cache = caches.default;
+    const cacheKey = new Request(targetUrl.toString(), { method: "GET" });
     let res = await cache.match(cacheKey);
     if (!res) {
-      const upstream = await fetch(TARGET, {
-        headers: { "user-agent": "CF-Worker-Mirror/1.0" },
+      const upstream = await fetch(targetUrl.toString(), {
+        headers: {
+          "user-agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115 Safari/537.36",
+          "accept":
+            "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+          "accept-language": "en-US,en;q=0.9",
+        },
       });
-      const html = await upstream.text();
 
-      // Optional: make relative links work by injecting <base>
-      const withBase = /<base\s/i.test(html)
-        ? html
-        : html.replace(
-            /<head([^>]*)>/i,
-            (m, g1) => `<head${g1}><base href="${new URL(TARGET).origin}/">`
-          );
+      let html = await upstream.text();
 
-      res = new Response(withBase, {
+      // 5) Keep relative links working
+      if (!/<base\s/i.test(html)) {
+        html = html.replace(
+          /<head([^>]*)>/i,
+          (m, g1) => `<head${g1}><base href="${TARGET.origin}/">`
+        );
+      }
+
+      res = new Response(html, {
         headers: {
           "content-type": "text/html; charset=utf-8",
-          // Cache at edge 60s; browsers 30s
           "cache-control": "public, max-age=30, s-maxage=60",
         },
       });
 
-      // Store in Cloudflare edge cache
       ctx.waitUntil(cache.put(cacheKey, res.clone()));
     }
 
