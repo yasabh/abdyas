@@ -1,6 +1,6 @@
 export default {
   async fetch(request, env, ctx) {
-    // const url = new URL(request.url);
+    const url = new URL(request.url);
     const TARGET = env.TARGET_URL;
     const cache = caches.default;
 
@@ -8,10 +8,10 @@ export default {
     const cacheKey = new Request(TARGET, { method: "GET" });
 
     // Redirect everything to canonical
-    // if (url.hostname !== env.CANONICAL) {
-    //   url.hostname = env.CANONICAL;
-    //   return Response.redirect(url.toString(), 301);
-    // }
+    if (url.hostname !== env.CANONICAL) {
+      url.hostname = env.CANONICAL;
+      return Response.redirect(url.toString(), 301);
+    }
 
     // Try edge cache first
     let res = await cache.match(cacheKey);
