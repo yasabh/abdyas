@@ -1,0 +1,6 @@
+name = "mirror-worker"
+main = "src/index.js"
+
+[vars]
+CANONICAL = "abdyas.dev"
+TARGET_URL = "https://abdyas.framer.ai"

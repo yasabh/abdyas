@@ -1,10 +1,17 @@
 export default {
   async fetch(request, env, ctx) {
-    const TARGET = env.TARGET_URL || "https://example.com"; // set in Pages env vars
+    const url = new URL(request.url);
+    const TARGET = env.TARGET_URL;
     const cache = caches.default;
 
     // Always mirror root of TARGET (simple version)
     const cacheKey = new Request(TARGET, { method: "GET" });
+
+    // Redirect everything to canonical
+    if (url.hostname !== env.CANONICAL) {
+      url.hostname = env.CANONICAL;
+      return Response.redirect(url.toString(), 301);
+    }
 
     // Try edge cache first
     let res = await cache.match(cacheKey);
