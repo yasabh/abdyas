@@ -1,0 +1,2 @@
+# static/_redirects
+https://abdyas-blog.pages.dev/*   https://blog.abdyas.dev/:splat   301!
