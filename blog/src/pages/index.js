@@ -1,176 +1,245 @@
 import * as React from "react"
+import { graphql } from "gatsby"
+import PropTypes from "prop-types"
 
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
+// local imports
+import Post from "../templates/post"
+import Layout from "../components/layout"
+import Seo from "../components/seo"
+import Tags from "../components/tagsPanel"
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
+// MUI components
+import Box from "@mui/material/Box"
+import Container from "@mui/material/Container"
+import Divider from "@mui/material/Divider"
+import Grid from "@mui/material/Grid"
+import Tabs from "@mui/material/Tabs"
+import Tab from "@mui/material/Tab"
 
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
 
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
-
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
-
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
-
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/getting-started/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
-
-const IndexPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! 🎉🎉🎉</span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time. 😎
-      </p>
-      <ul style={listStyles}>
-        <li style={docLinkStyle}>
-          <a
-            style={linkStyle}
-            href={`${docLink.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-          >
-            {docLink.text}
-          </a>
-        </li>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-              >
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Grid
+          container
+          sx={{ gap: "2rem", "@media (max-width: 600px)": { gap: "1.5rem" } }}
+        >
+          {children}
+        </Grid>
+      )}
+    </div>
   )
 }
 
-export default IndexPage
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+}
 
-export const Head = () => <title>Home Page</title>
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  }
+}
+
+const Index = ({ data, location }) => {
+  const siteTitle = data.site.siteMetadata?.title || `Title`
+  const posts = data.allMdx.nodes
+
+  const [value, setValue] = React.useState(0)
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
+
+  if (posts.length === 0) {
+    return (
+      <Layout location={location} title={siteTitle}>
+        <Seo title="Portfolio" />
+        <p>
+          No blog posts found. Add markdown posts to "content/posts" (or the
+          directory you specified for the "gatsby-source-filesystem" plugin in
+          gatsby-config.js).
+        </p>
+      </Layout>
+    )
+  }
+
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo title="Portfolio" />
+      <Container
+        maxWidth="string"
+        disableGutters
+        sx={{
+          maxWidth: "692px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "2rem",
+          "@media (max-width: 600px)": {
+            gap: "1.5rem",
+            px: "1.5rem",
+          },
+        }}
+      >
+        {/* category tabs selector */}
+        <Box
+          sx={{
+            width: "100%",
+            borderBottom: 1,
+            borderColor: "divider",
+          }}
+        >
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="nav tabs example"
+            sx={{
+              "& .MuiTabs-flexContainer": {
+                gap: "1rem",
+              },
+              "& .MuiTabs-indicator": {
+                backgroundColor: "text.primary",
+                height: "1px",
+              },
+            }}
+          >
+            <Tab
+              label="Blog"
+              {...a11yProps(0)}
+              sx={{
+                textTransform: "capitalize",
+                fontWeight: 400,
+                minWidth: "60px",
+                "&.Mui-selected": { color: "text.primary" },
+              }}
+            />
+            
+            <Tab
+              label="Gear List"
+              component="a"
+              href="/gear"
+              sx={{
+                textTransform: "capitalize",
+                fontWeight: 400,
+                minWidth: "60px",
+                "&.Mui-selected": { color: "text.primary" },
+              }}
+            />
+            <Tab
+              label="My Links"
+              component="a"
+              href="/links"
+              sx={{
+                textTransform: "capitalize",
+                fontWeight: 400,
+                minWidth: "60px",
+                "&.Mui-selected": { color: "text.primary" },
+              }}
+            />
+          </Tabs>
+        </Box>
+        
+        <Tags />
+        {/* all posts panel  */}
+        <TabPanel value={value} index={0} key={"all"}>
+          {posts.map(post => {
+            return (
+              <Grid
+                item
+                xs={12}
+                key={post.id}
+                sx={{
+                  "&:last-child": { "& > hr": { display: "none" } },
+                }}
+              >
+                <Post data={post} />
+                <Divider
+                  sx={{ pt: 4, "@media (max-width: 600px)": { pt: "1.5rem" } }}
+                />
+              </Grid>
+            )
+          })}
+        </TabPanel>
+
+        {/* categories panels */}
+        {data.allMdx.group.map((category, index) => (
+          <TabPanel value={value} index={index + 1} key={category.fieldValue}>
+            {posts.map(post => {
+              if (post.frontmatter.category === category.fieldValue) {
+                return (
+                  <Grid
+                    item
+                    xs={12}
+                    key={post.id}
+                    sx={{
+                      "&:last-child": { "& > hr": { display: "none" } },
+                    }}
+                  >
+                    <Post data={post} />
+                  <Divider
+                      sx={{
+                        pt: 4,
+                        "@media (max-width: 600px)": { pt: "1.5rem" },
+                      }}
+                    />
+                  </Grid>
+                )
+              }
+              return
+            })}
+          </TabPanel>
+        ))}
+      </Container>
+    </Layout>
+  )
+}
+
+export default Index
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allMdx(sort: {frontmatter: {date: DESC}}, limit: 200) {
+      group(field: { frontmatter: { category: SELECT } }) {
+        fieldValue
+      }
+      nodes {
+        id
+        excerpt
+        fields {
+          slug
+        }
+        timeToRead
+        frontmatter {
+          category
+          date(formatString: "MMMM DD, YYYY")
+          title
+          description
+          tags
+          featuredImage {
+            childImageSharp {
+              gatsbyImageData(aspectRatio: 1)
+            }
+            name
+          }
+        }
+      }
+    }
+  }
+`

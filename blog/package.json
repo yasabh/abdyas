@@ -1,37 +1,80 @@
 {
-  "name": "abdyas-blog",
-  "version": "1.0.0",
+  "name": "gatsby-starter-blog",
   "private": true,
-  "description": "abdyas-blog",
-  "author": "Yasin Abdullah",
+  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "version": "0.1.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@lyket/react": "^2.1.0",
+    "@mdx-js/mdx": "^2.3.0",
+    "@mdx-js/react": "^2.3.0",
+    "@mui/icons-material": "^7.3.5",
+    "@mui/material": "^7.3.5",
+    "@parcel/config-default": "^2.16.1",
+    "algoliasearch": "^5.45.0",
+    "charter-webfont": "^4.1.0",
+    "gatsby": "^5.15.0",
+    "gatsby-plugin-algolia": "^1.0.3",
+    "gatsby-plugin-feed": "^5.15.0",
+    "gatsby-plugin-gatsby-cloud": "^5.14.0",
+    "gatsby-plugin-google-tagmanager": "^5.15.0",
+    "gatsby-plugin-image": "^3.15.0",
+    "gatsby-plugin-manifest": "^5.15.0",
+    "gatsby-plugin-mdx": "^5.15.0",
+    "gatsby-plugin-offline-next": "^5.2.3",
+    "gatsby-plugin-react-helmet": "^6.15.0",
+    "gatsby-plugin-sharp": "^5.15.0",
+    "gatsby-remark-copy-linked-files": "^6.15.0",
+    "gatsby-remark-images": "^7.15.0",
+    "gatsby-remark-prismjs": "^7.15.0",
+    "gatsby-remark-responsive-iframe": "^6.15.0",
+    "gatsby-remark-smartypants": "^6.15.0",
+    "gatsby-source-filesystem": "^5.15.0",
+    "gatsby-transformer-sharp": "^5.15.0",
+    "prismjs": "^1.30.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^5.5.0",
+    "react-instantsearch": "^7.20",
+    "reading-time": "^1.5.0",
+    "rehype-unwrap-images": "^1.0.0",
+    "typeface-merriweather": "^1.1.13",
+    "typeface-montserrat": "^1.1.13",
+    "use-dark-mode": "^2.3.1"
+  },
+  "overrides": {
+    "core-js": "^3.47.0",
+    "cookie": "^1.1.1",
+    "lodash.template": "^4.5.3",
+    "tmp": "^0.2.5",
+    "workbox-build": "^7.4.0"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "prettier": "^2.6.2"
+  },
+  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
     "gatsby"
   ],
+  "license": "0BSD",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+  },
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
     "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "gatsby develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
-  },
-  "dependencies": {
-    "gatsby": "^5.14.6",
-    "gatsby-plugin-image": "^3.15.0",
-    "gatsby-plugin-sharp": "^5.15.0",
-    "gatsby-plugin-sitemap": "^6.15.0",
-    "gatsby-source-filesystem": "^5.15.0",
-    "gatsby-transformer-sharp": "^5.15.0",
-    "postcss": "^8.5.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@mdx-js/mdx": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
-    "@tailwindcss/postcss": "^4.1.13",
-    "autoprefixer": "^10.4.21",
-    "gatsby-plugin-mdx": "^5.15.0",
-    "gatsby-plugin-postcss": "^6.15.0",
-    "tailwindcss": "^4.1.13"
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }
