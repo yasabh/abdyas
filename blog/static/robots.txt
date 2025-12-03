@@ -1,2 +1,4 @@
+# This website in under mantenance
+
 User-agent: *
-Disallow:
+Disallow: /
