@@ -310,7 +310,7 @@ const Layout = ({
                               },
                             }}
                           >
-                            {" "}Built by Brian Ruiz
+                            {" Abdyas"}
                           </Box>
                         </Typography>
                       </Box>

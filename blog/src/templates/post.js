@@ -105,7 +105,7 @@ const PostItem = ({ data }) => {
                   },
                 }}
               >
-                {`${data.frontmatter.description} —${data.excerpt}`}
+                {`${data.frontmatter.description} — ${data.excerpt}`}
               </Typography>
             </Box>
             <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>

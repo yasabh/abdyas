@@ -28,6 +28,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             frontmatter {
               tags
             }
+            internal {
+              contentFilePath
+            }
           }
         }
         tagsGroup: allMdx(limit: 200) {
@@ -60,7 +63,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
       createPage({
         path: post.fields.slug,
-        component: postTemplate,
+        component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
         context: {
           id: post.id,
           previousPostId,
@@ -91,13 +94,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value: `/post${value}`,
+      value: `/story${value}`,
     })
 
-    const stats = readingTime(node.rawBody || "")
+    const stats = readingTime(node.body)
     createNodeField({
-      name: `timeToRead`,
       node,
+      name: `timeToRead`,
       value: Math.ceil(stats.minutes),
     })
   }

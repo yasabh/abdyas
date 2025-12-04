@@ -14,7 +14,7 @@
     "@mdx-js/mdx": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@mui/icons-material": "^7.3.5",
-    "@mui/material": "^7.3.5",
+    "@mui/material": "^7.3.6",
     "@parcel/config-default": "^2.16.1",
     "algoliasearch": "^5.45.0",
     "charter-webfont": "^4.1.0",

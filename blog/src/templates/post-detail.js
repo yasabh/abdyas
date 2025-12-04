@@ -166,7 +166,7 @@ const PostDetailTemplate = ({ data, location, children }) => {
 
   const handleTooltipOpen = () => {
     setOpen(true)
-    navigator.clipboard.writeText(`https://b-r.io${location.pathname}`)
+    navigator.clipboard.writeText(window.location.href)
     setTimeout(() => {
       setOpen(false)
     }, 700)
