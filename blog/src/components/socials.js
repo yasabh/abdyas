@@ -6,11 +6,10 @@ import Button from "@mui/material/Button"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-const MY_GITHUB = process.env.GATSBY_MY_GITHUB
 const profiles = {
   github: {
     name: "GitHub",
-    url: `https://github.com/${MY_GITHUB}`,
+    url: `https://github.com/yasabh`,
     icon: "https://cdn-icons-png.flaticon.com/512/25/25231.png",
     followers: "",
   },
@@ -43,7 +42,7 @@ const profiles = {
 const Socials = () => {
   const [gitFollowers, setGitFollowers] = React.useState(0)
   React.useEffect(() => {
-    fetch(`https://api.github.com/users/${MY_GITHUB}`)
+    fetch(`https://api.github.com/users/yasabh`)
       .then(res => res.json())
       .then(data => {
         setGitFollowers(data.followers)

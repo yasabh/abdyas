@@ -61,7 +61,6 @@ const profiles = {
 }
 
 const NotFoundPage = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
 
   return (
     <Layout

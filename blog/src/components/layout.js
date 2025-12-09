@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import useDarkMode from "use-dark-mode"
 
 import BottomNav from "./BottomNav"
@@ -50,6 +50,20 @@ const Layout = ({
   extraFooterContent,
   children,
 }) => {
+  const { site } = useStaticQuery(graphql`
+    query LayoutSiteMetadata {
+      site {
+        siteMetadata {
+          author {
+            name
+            email
+          }
+        }
+      }
+    }
+  `)
+
+  const author = site?.siteMetadata?.author
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
   const darkModeHook = useDarkMode(false, {storageKey: "dark-mode"})
@@ -126,6 +140,7 @@ const Layout = ({
           <Box sx={{ display: "block", margin: "auto", maxWidth: "1504px" }}>
             <Box sx={{ display: "flex" }} data-is-root-path={isRootPath}>
               <PanelLeft
+                author={author}
                 isRootPath={isRootPath}
                 ThemeButton={<ThemeIconButton darkModeHook={darkModeHook} />}
               />
@@ -173,7 +188,7 @@ const Layout = ({
                             },
                           }}
                         >
-                          BR
+                          AY
                         </Avatar>
                       )}
 
@@ -243,7 +258,7 @@ const Layout = ({
                               lineHeight: "20px",
                             }}
                           >
-                            More stories from Brian
+                            More stories from {author.name}
                           </Typography>
                           <Button
                             variant="outlined"
@@ -318,7 +333,7 @@ const Layout = ({
                   </Container>
                 </footer>
               </Box>
-              <PanelRight extraDrawerContent={extraDrawerContent} />
+              <PanelRight author={author} extraDrawerContent={extraDrawerContent} />
             </Box>
           </Box>
           <BottomNav isRootPath={isRootPath} darkModeHook={darkModeHook} />

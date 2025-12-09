@@ -11,7 +11,7 @@ import Button from "@mui/material/Button"
 import SearchIcon from "@mui/icons-material/Search"
 import Typography from "@mui/material/Typography"
 
-export default function PanelRight({ extraDrawerContent }) {
+export default function PanelRight({ author, extraDrawerContent }) {
   const [open, setOpen] = React.useState(false)
   const handleClickOpen = () => {
     setOpen(true)
@@ -101,10 +101,10 @@ export default function PanelRight({ extraDrawerContent }) {
                 }}
                 // email to the author
                 onClick={() => {
-                  window.location.href = "mailto:brianruiz0123@gmail.com"
+                  window.location.href = `mailto:${author.email}`
                 }}
               >
-                Contact Me
+                Email Me
               </Button>
               <Button
                 variant="outlined"
@@ -142,8 +142,8 @@ export default function PanelRight({ extraDrawerContent }) {
               >
                 <Box display={"flex"} gap={2} alignItems={"center"}>
                   <Avatar
-                    alt="Brian Ruiz"
-                    src="https://www.b-r.io/avatar.png"
+                    alt={author.name}
+                    src="https://framerusercontent.com/images/IgkziecHFjLcciFuXxt3oxPDQ.jpeg?scale-down-to=64"
                     sx={{ width: 64, height: 64, backgroundColor: "divider" }}
                   >
                     BR
@@ -159,7 +159,7 @@ export default function PanelRight({ extraDrawerContent }) {
                         color: "text.primary",
                       }}
                     >
-                      {process.env.GATSBY_OWNER}
+                      {author.name}
                     </Typography>
                     <Typography variant="body2" sx={{ color: "text.disabled" }}>
                       Software Engineer

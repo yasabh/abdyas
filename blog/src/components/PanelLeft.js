@@ -14,7 +14,7 @@ import HomeIcon from "@mui/icons-material/Home"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
 import SearchIcon from "@mui/icons-material/Search"
 
-export default function RightDrawer({ isRootPath, ThemeButton }) {
+export default function RightDrawer({ author, isRootPath, ThemeButton }) {
   const [state, setState] = React.useState({
     bottom: false,
   })
@@ -129,8 +129,8 @@ export default function RightDrawer({ isRootPath, ThemeButton }) {
       </Box>
       <Box>
         <Avatar
-          alt="Brian Ruiz"
-          src="https://www.b-r.io/avatar.png"
+          alt={author.name}
+          src="https://framerusercontent.com/images/IgkziecHFjLcciFuXxt3oxPDQ.jpeg?scale-down-to=64"
           sx={{ width: 32, height: 32, backgroundColor: "divider" }}
         >
           BR

@@ -161,6 +161,7 @@ const PostDetailTemplate = ({ data, location, children }) => {
   const post = data.mdx
   const image = getImage(post.frontmatter.featuredImage)
   const tags = post.frontmatter.tags
+  const author = post.frontmatter.author 
 
   const [open, setOpen] = React.useState(false)
 
@@ -245,7 +246,7 @@ const PostDetailTemplate = ({ data, location, children }) => {
             >
               <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                 <Avatar
-                  alt="Brian Ruiz"
+                  alt={author}
                   src="../avatar.png"
                   sx={{
                     width: 48,
@@ -257,10 +258,10 @@ const PostDetailTemplate = ({ data, location, children }) => {
                     },
                   }}
                 >
-                  BR
+                  AY
                 </Avatar>
                 <Stack>
-                  <Typography variant="body1">Brian Ruiz</Typography>
+                  <Typography variant="body1">{author}</Typography>
                   <Typography color="text.secondary" variant="body2">
                     {post.frontmatter.date}
                     <Box
@@ -404,6 +405,9 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author {
+          name
+        }
       }
     }
     mdx(id: { eq: $id }) {
