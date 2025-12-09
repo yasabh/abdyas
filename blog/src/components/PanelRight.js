@@ -159,7 +159,7 @@ export default function PanelRight({ extraDrawerContent }) {
                         color: "text.primary",
                       }}
                     >
-                      Brian Ruiz
+                      {process.env.GATSBY_OWNER}
                     </Typography>
                     <Typography variant="body2" sx={{ color: "text.disabled" }}>
                       Software Engineer
@@ -167,7 +167,7 @@ export default function PanelRight({ extraDrawerContent }) {
                   </div>
                 </Box>
                 <Typography variant="body2" sx={{  color: "text.secondary" }}>
-                  I'm a full-stack Software Engineer based out of Houston, TX. 
+                  I'm an ex-Software and System Ops Engineer. 
                   Here you'll find my personal blog posts and case studies 
                   on all things tech.
                 </Typography>

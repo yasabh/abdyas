@@ -116,7 +116,7 @@ const Index = ({ data, location }) => {
             }}
           >
             <Tab
-              label="Blog"
+              label="Stories"
               {...a11yProps(0)}
               sx={{
                 textTransform: "capitalize",
@@ -126,6 +126,7 @@ const Index = ({ data, location }) => {
               }}
             />
             
+            {process.env.NODE_ENV === "development" && ( <>
             <Tab
               label="Gear List"
               component="a"
@@ -148,6 +149,8 @@ const Index = ({ data, location }) => {
                 "&.Mui-selected": { color: "text.primary" },
               }}
             />
+            </> )}
+
           </Tabs>
         </Box>
         
