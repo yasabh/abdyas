@@ -94,7 +94,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value: `/story${value}`,
+      value: `/post${value}`,
     })
 
     const stats = readingTime(node.body)

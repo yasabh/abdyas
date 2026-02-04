@@ -121,6 +121,7 @@ export default function RightDrawer({ author, isRootPath, ThemeButton }) {
             </IconButton>
           </Tooltip>
           <ContactDrawer
+            contactEmail={author.email}
             open={state["bottom"]}
             onClose={toggleDrawer("bottom", false)}
           />

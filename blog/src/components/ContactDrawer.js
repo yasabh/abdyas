@@ -46,7 +46,7 @@ export default function ContactDrawer(props) {
               >
                 Have any questions, feedback or want to say hi? Fill the form,
                 or{" "}
-                <Link href="mailto:brianruiz0123@gmail.com" color={"inherit"}>
+                <Link href={`mailto:${props.contactEmail}`}  color={"inherit"}>
                   email me
                 </Link>{" "}
                 whenever convenient.
