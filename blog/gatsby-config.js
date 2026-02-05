@@ -6,9 +6,9 @@ module.exports = {
     author: {
       name: `Abdyas`,
       email: `me@abdyas.dev`,
-      summary: `Brian Ruiz is a Software Engineer based out of Houston, TX.`,
+      summary: `A former software and DevOps engineer who has spent years building the quiet parts of systems.`,
     },
-    description: `Brian Ruiz is a Software Engineer based out of Houston, TX.`,
+    description: `This blog is where I learn out loud, and share my technical notes and tutorials as I work through problems with a security-engineering mindset.`,
     siteUrl: `https://blog.abdyas.dev`,
     social: {
       linkedin: `yasin-abdullah`,
@@ -18,7 +18,6 @@ module.exports = {
     },
   },
   plugins: [
-    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -123,8 +122,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
@@ -179,7 +176,7 @@ module.exports = {
               }
             `,
             output: "/rss.xml",
-            title: "b-r.io RSS Feed",
+            title: "Abdyas' Blog RSS Feed",
           },
         ],
       },
@@ -210,6 +207,10 @@ module.exports = {
         theme_color_in_head: false, // This will avoid adding theme-color meta gtag.
       },
     },
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

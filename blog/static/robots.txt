@@ -1,4 +1,4 @@
-# This website in under mantenance
-
 User-agent: *
-Disallow: /
+Disallow:
+
+Sitemap: https://blog.abdyas.dev/sitemap-index.xml

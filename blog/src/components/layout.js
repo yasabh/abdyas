@@ -258,7 +258,7 @@ const Layout = ({
                               lineHeight: "20px",
                             }}
                           >
-                            More stories from {author.name}
+                            Get more stories
                           </Typography>
                           <Button
                             variant="outlined"
@@ -278,8 +278,7 @@ const Layout = ({
                           sx={{ maxWidth: "330px", color: "text.disabled" }}
                         >
                           Hey, enjoying the content? Subscribe to my newsletter
-                          to stay up to date on new posts and more. P.S. No
-                          spam, unsubscribe any time.
+                          for new posts and updates. P.S. No spam, unsubscribe anytime.
                         </Typography>
                       </Box>
                       {extraFooterContent}
@@ -302,8 +301,8 @@ const Layout = ({
                             variant="body2"
                             sx={{ display: "flex", alignItems: "center" }}
                           >
-                            Gatsby Medium Blog
-                            <StarBorderIcon
+                            Powered by Gatsby Medium Blog
+                            {/* <StarBorderIcon
                               alt="Github stars"
                               sx={{ ml: 0.5, fontSize: "16px" }}
                             />
@@ -311,7 +310,7 @@ const Layout = ({
                             <ForkRightIcon
                               alt="Github forks"
                               sx={{ ml: 0.25, fontSize: "16px" }}
-                            />
+                            /> */}
                             {githubForks}
                           </Typography>
                         </MuiLink>
