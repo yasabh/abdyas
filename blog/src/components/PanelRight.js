@@ -6,10 +6,10 @@ import Socials from "./socials"
 import SearchDialog from "./search/search-dialog"
 
 import Box from "@mui/material/Box"
-import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import SearchIcon from "@mui/icons-material/Search"
-import Typography from "@mui/material/Typography"
+// import Avatar from "@mui/material/Avatar"
+// import Typography from "@mui/material/Typography"
 
 export default function PanelRight({ author, extraDrawerContent }) {
   const [open, setOpen] = React.useState(false)
@@ -87,7 +87,7 @@ export default function PanelRight({ author, extraDrawerContent }) {
                 gap: 2,
               }}
             >
-              <Button
+              {/* <Button
                 variant="contained"
                 disableElevation
                 fullWidth
@@ -105,7 +105,7 @@ export default function PanelRight({ author, extraDrawerContent }) {
                 }}
               >
                 Email Me
-              </Button>
+              </Button> */}
               <Button
                 variant="outlined"
                 fullWidth
@@ -131,48 +131,48 @@ export default function PanelRight({ author, extraDrawerContent }) {
                 handleClose={handleClose}
               />
             </Box>
-            {extraDrawerContent ? null : (
-              <Box
-                // user info
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 2,
-                }}
-              >
-                <Box display={"flex"} gap={2} alignItems={"center"}>
-                  <Avatar
-                    alt={author.name}
-                    src="https://framerusercontent.com/images/IgkziecHFjLcciFuXxt3oxPDQ.jpeg?scale-down-to=64"
-                    sx={{ width: 64, height: 64, backgroundColor: "divider" }}
+            {/* {extraDrawerContent ? null : (
+            <Box
+              // user info
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+              }}
+            >
+              <Box display={"flex"} gap={2} alignItems={"center"}>
+                <Avatar
+                  alt={author.name}
+                  src="https://framerusercontent.com/images/IgkziecHFjLcciFuXxt3oxPDQ.jpeg?scale-down-to=64"
+                  sx={{ width: 64, height: 64, backgroundColor: "divider" }}
+                >
+                  AY
+                </Avatar>
+                <div>
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontSize: "16px !important",
+                      letterSpacing: 0,
+                      fontWeight: "500",
+                      lineHeight: "20px",
+                      color: "text.primary",
+                    }}
                   >
-                    BR
-                  </Avatar>
-                  <div>
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontSize: "16px !important",
-                        letterSpacing: 0,
-                        fontWeight: "500",
-                        lineHeight: "20px",
-                        color: "text.primary",
-                      }}
-                    >
-                      {author.name}
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: "text.disabled" }}>
-                      Software Engineer
-                    </Typography>
-                  </div>
-                </Box>
-                <Typography variant="body2" sx={{  color: "text.secondary" }}>
-                  I'm an ex-Software and System Ops Engineer. 
-                  Here you'll find my personal blog posts and case studies 
-                  on all things tech.
-                </Typography>
+                    {author.name}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "text.disabled" }}>
+                    Software Engineer
+                  </Typography>
+                </div>
               </Box>
-            )}
+              <Typography variant="body2" sx={{  color: "text.secondary" }}>
+                I'm an ex-Software and System Ops Engineer. 
+                Here you'll find my personal blog posts and case studies 
+                on all things tech.
+              </Typography>
+            </Box>
+            )} */}
             {extraDrawerContent ? null : <PinnedPosts />}
             {extraDrawerContent}
             <Socials />

@@ -2,17 +2,17 @@ import * as React from "react"
 import { Link } from "gatsby"
 
 import ContactDrawer from "./ContactDrawer"
-import SearchDialog from "./search/search-dialog"
+// import SearchDialog from "./search/search-dialog"
 
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
 
-import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined"
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined"
 import HomeIcon from "@mui/icons-material/Home"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
-import SearchIcon from "@mui/icons-material/Search"
+// import SearchIcon from "@mui/icons-material/Search"
 
 export default function RightDrawer({ author, isRootPath, ThemeButton }) {
   const [state, setState] = React.useState({
@@ -30,12 +30,12 @@ export default function RightDrawer({ author, isRootPath, ThemeButton }) {
   }
 
   const [open, setOpen] = React.useState(false)
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-  const handleClose = () => {
-    setOpen(false)
-  }
+  // const handleClickOpen = () => {
+  //   setOpen(true)
+  // }
+  // const handleClose = () => {
+  //   setOpen(false)
+  // }
 
   return (
     <Box
@@ -61,7 +61,7 @@ export default function RightDrawer({ author, isRootPath, ThemeButton }) {
           sx={{ color: "text.primary" }}
           size="small"
           component={Link}
-          to="/"
+          to="https://abdyas.dev"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ export default function RightDrawer({ author, isRootPath, ThemeButton }) {
             )}
           </IconButton>
         </Tooltip>
-        <React.Fragment>
+        {/* <React.Fragment>
           <Tooltip title="Search" placement="right" arrow>
             <IconButton onClick={handleClickOpen}>
               <SearchIcon />
@@ -113,11 +113,11 @@ export default function RightDrawer({ author, isRootPath, ThemeButton }) {
             setOpen={setOpen}
             handleClose={handleClose}
           />
-        </React.Fragment>
+        </React.Fragment> */}
         <React.Fragment>
           <Tooltip title="Contact" placement="right" arrow>
             <IconButton onClick={toggleDrawer("bottom", true)}>
-              <AlternateEmailOutlinedIcon />
+              <EmailOutlinedIcon />
             </IconButton>
           </Tooltip>
           <ContactDrawer
@@ -134,7 +134,7 @@ export default function RightDrawer({ author, isRootPath, ThemeButton }) {
           src="https://framerusercontent.com/images/IgkziecHFjLcciFuXxt3oxPDQ.jpeg?scale-down-to=64"
           sx={{ width: 32, height: 32, backgroundColor: "divider" }}
         >
-          BR
+          AY
         </Avatar>
       </Box>
     </Box>

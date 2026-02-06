@@ -311,7 +311,7 @@ const Layout = ({
                               alt="Github forks"
                               sx={{ ml: 0.25, fontSize: "16px" }}
                             /> */}
-                            {githubForks}
+                            {/* {githubForks} */}
                           </Typography>
                         </MuiLink>
                         <Typography variant="body2">
